@@ -1,13 +1,28 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
+<head>
+  <link rel="stylesheet" href="style.css">
+  <Title>Popout Experiment</Title>
+</head>
 
-<style>
-</style>
 
 <body>
-  <h1> Experiment </h1>
-</body>
 
+
+  <span>
+    <h1> Instructions </h1>
+    <p>The purpose of this activity is to study <b id="pop">popout!</b> We want to see how good you are at spotting an <b class="blinking">outlier!</b> But
+      really, since we are going to extrapolate this data and assume that you lot are the least unique/extraordinary lot possible, we are going to see how
+      good these outliers are at being <bdi id="upside"> spotted </bdi>________ by you! Your job is simple: As soon as you hit the Start button, a scatter
+      plot will appear over most of the screen for a split second, so be ready. Your goal is to determine if there were any outliers. Then, on the following
+      page, all you have to do is indicate if there was an <bdi id="opq">outlier</bdi> or not. Then either choose to test your skills again, or finish the game!
+      Thanks for participating!
+    </p>
+    <button id = "startButton"> <a href="svgScatter.html">Begin</a></button>
+  </span>
+
+
+</body>
 <script>
   console.log(d3); // test if d3 is loaded
 </script>

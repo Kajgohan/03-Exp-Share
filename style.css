@@ -1,0 +1,44 @@
+span {
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#pop
+{
+    color: red;
+
+}
+#upside
+{
+    -moz-transform:rotate(-180deg); /* Firefox */
+    -webkit-transform:rotate(-180deg); /* Webkit */
+    -ms-transform:rotate(-180deg); /* IE */
+    -o-transform:rotate(-180deg); /* Opera */
+    transform:rotate(-180deg); /* future */
+    position:absolute;
+}
+button{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+#opq
+{
+    opacity: 40%;
+}
+
+
+.blinking{
+    animation:blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: #000; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+}
+
+
