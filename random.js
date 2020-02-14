@@ -20,9 +20,6 @@ function main() {
 
 
 
-
-
-
 }
 
 //Creates the random SVG dots onto the canvas
@@ -34,7 +31,10 @@ function randomSVG() {
     var canvas = d3.select('svg')
         //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
     var data = d3.range(1000).map(function() {
-        max = 450
+
+        var cont = document.getElementById('myCanvas');
+        max = cont
+        console.log(max)
         min = 0
         return {
             'x': Math.random() * (max - min) + min,
@@ -49,15 +49,11 @@ function randomSVG() {
         .enter().append("circle")
         .attr("r", 3)
         .attr("cx", function(d) {
-            console.log(d)
+            //console.log(d)
             return d.x;
         })
-        .attr('color', 'red')
-        // .attr('cx', (d) => {
-        //     return d.x
-        // })
         .attr("cy", function(d) {
             return d.y;
-        });
-
+        })
+        .attr('fill', 'red');
 }

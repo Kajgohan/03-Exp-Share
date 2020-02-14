@@ -56,9 +56,13 @@ button {
 }
 
 .container {
+    display: block;
+    padding: 0px;
+    margin: auto;
     text-align: center;
     width: 5in;
     height: 5in;
+    border-style: solid;
 }
 
 svg {
