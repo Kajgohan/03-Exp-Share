@@ -2,19 +2,32 @@
 <html lang="en">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="random.js"></script>
+<link rel="stylesheet" href="style.css">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="3; responsePage.html" />
-    <title>Svg Scatter</title>
+    <!-- <meta http-equiv="refresh" content="3; responsePage.html" /> -->
+    <title>SVG Scatter</title>
 
 </head>
+
 <body>
-    <canvas id="myCanvas" style="border:1px solid #d3d3d3;"></canvas>
+
+    <!-- <canvas id="myCanvas" style="border:1px solid #d3d3d3;"></canvas> -->
+    <div class='container'>
+        <svg id="myCanvas"></svg>
+    </div>
     <script>
-        var canvas = document.getElementById("myCanvas");
-        canvas.width = window.innerWidth; //document.width is obsolete
-        canvas.height = window.innerHeight;
+        var canvas = document.getElementById("myCanvas"); //https://www.freecodecamp.org/news/d3-and-canvas-in-3-steps-8505c8b27444/
+        // canvas.width = window.innerWidth; //document.width is obsolete
+        // canvas.height = window.innerHeight;
+        randomSVG();
+        // 'canvas toolbox?' context object carries all the variables, properties, methods
+        //var context = canvas.node().getContext('2d');
+        // https://brendansudol.com/writing/responsive-d3
+        //Creates the random SVG dots onto the canvas
     </script>
 </body>
+
 </html>
