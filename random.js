@@ -43,7 +43,7 @@ function randomSVG() {
     console.log(sampleData);
 
 
-        //https://bost.ocks.org/mike/join/
+    //https://bost.ocks.org/mike/join/
     var points = canvas.selectAll("circle")
         .data(sampleData)
         .enter().append("circle")
@@ -55,7 +55,7 @@ function randomSVG() {
         .attr("cy", function(d) {
             return d.y;
         })
-        .attr('fill', function (d) {
+        .attr('fill', function(d) {
             return d.color;
         });
 
@@ -67,13 +67,13 @@ function randomSVG() {
 
 }
 
-function getRandomGreen(){
+function getRandomGreen() {
     //choose green;
     return ("#00FF00");
 
 }
 
-function logGreens(allGreen, oneGreen){
+function logGreens(allGreen, oneGreen) {
     //add the greens to the data collection
 }
 
@@ -83,23 +83,27 @@ function logKey(e) {
         console.log('q was pressed!!!')
         document.getElementById('Outlier').checked = true;
         choice = true
+        logData(choice)
+        logData(choice, 11, 22, 'dotlocation')
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
         choice = false
+        logData(choice, 11, 22, 'dotlocation')
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
-    logData(choice)
+
+}
+
+function goAgain(e) {
+
 }
 
 // Initialize Cloud Firestore through Firebase
 
-//meed to figure out how to keey these keys private from github right now they can just be in the gitignore
-//get the local keys
-// var mydata = JSON.parse(keys);
-// console.log(json.keys);
+// very sketchy to have keys in the open like this, 
+//but apparently all the security is done in rules on the firebase console. 
 
-// very sketchy to have keys in the open like this, but apparently all the security is done in rules on the firebase console. 
 firebase.initializeApp({
     apiKey: "AIzaSyDzvcbGX0Nsre6GGzkZV6Zij4_pqlCafQk",
     authDomain: "cs480xproject.firebaseapp.com",
@@ -110,14 +114,17 @@ var db = firebase.firestore();
 const docRef = db.doc("testing/testData");
 //function to log data and move on
 
-function logData(choice) {
+function logData(choice, backgroundColor, popoutColor, dotLocation) {
     console.log(choice);
-    document.getElementById("GoAgain").click();
-    db.collection('testing').add({
+    var now = new Date();
+    // document.getElementById("GoAgain").click();
+    db.collection('testing2').add({
         user: 1,
-        selection: 'random',
-        testNumber: 1,
-        actualValue: 33
+        selection: choice,
+        backgroundColor: backgroundColor,
+        popoutColor: popoutColor,
+        time: now,
+        dotLocation: 'array'
     }).then(function() {
         console.log('Successfully saved!')
     }).catch(function(error) {
