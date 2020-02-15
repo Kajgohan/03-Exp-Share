@@ -55,17 +55,16 @@ button {
     }
 }
 
-.container {
-    display: block;
-    padding: 0px;
-    margin: auto;
-    text-align: center;
-    width: 5in;
-    height: 5in;
+#container {
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    top: 2%;
+    left: 2%;
     border-style: solid;
 }
 
-svg {
-    width: 100%;
+#myCanvas{
     height: 100%;
+    width: 100%;
 }
