@@ -1,12 +1,6 @@
 function main() {
     setActions();
 
-
-
-
-
-
-
     function setActions() {
         //The start button is on the index page
         var startButton = document.getElementById("startButton");
@@ -16,9 +10,6 @@ function main() {
         var goAgain = document.getElementById("goAgain");
         goAgain.onClick = randomSVG;
     }
-
-
-
 
 }
 
@@ -33,7 +24,7 @@ function randomSVG() {
     var data = d3.range(1000).map(function() {
 
         var cont = document.getElementById('myCanvas');
-        max = cont
+        max = cont.width.baseVal
         console.log(max)
         min = 0
         return {
@@ -56,4 +47,35 @@ function randomSVG() {
             return d.y;
         })
         .attr('fill', 'red');
+}
+
+function logKey(e) {
+    console.log(e.key)
+    if (e.key == "q") {
+        console.log('q was pressed!!!')
+        document.getElementById('Outlier').checked = true;
+        choice = true
+    } else if (e.key == "p") {
+        console.log('p was pressed!!')
+        document.getElementById('No Outlier').checked = true;
+        choice = false
+    }
+    //!!! INSERT wait a bit to show the user their selection before its submitted
+    logData(choice)
+}
+
+
+//function to log data and move on
+
+function logData(choice) {
+    console.log(choice);
+    document.getElementById("GoAgain").click();
+    if (choice == true) {
+
+        //send input to DB here
+    } else if (choice == false) {
+
+        //send input to DB here
+
+    }
 }
