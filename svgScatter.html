@@ -14,14 +14,13 @@
 
 <body>
 
-    <!-- <canvas id="myCanvas" style="border:1px solid #d3d3d3;"></canvas> -->
     <div id='container' class='container'>
         <svg id="myCanvas"></svg>
     </div>
     <script>
-        var canvas = document.getElementById("myCanvas"); //https://www.freecodecamp.org/news/d3-and-canvas-in-3-steps-8505c8b27444/
-        // canvas.width = window.innerWidth; //document.width is obsolete
-        // canvas.height = window.innerHeight;
+         var canvas = document.getElementById("container"); //https://www.freecodecamp.org/news/d3-and-canvas-in-3-steps-8505c8b27444/
+        canvas.width = window.innerWidth; //document.width is obsolete
+        canvas.height = window.innerHeight;
         randomSVG();
         // 'canvas toolbox?' context object carries all the variables, properties, methods
         //var context = canvas.node().getContext('2d');

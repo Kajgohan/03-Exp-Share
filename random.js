@@ -20,23 +20,23 @@ function randomSVG() {
     //hue
     //saturation
     var canvas = d3.select('svg')
-        //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
-    var data = d3.range(1000).map(function() {
 
-        var cont = document.getElementById('myCanvas');
-        max = cont.width.baseVal
-        console.log(max)
-        min = 0
-        return {
-            'x': Math.random() * (max - min) + min,
-            'y': Math.random() * (max - min) + min
-        }
-    });
+    //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
+    var sampleData = d3.range(1000).map(function(d) {
+        var _d = {};
+        var clientHeight = document.getElementById('container').clientHeight;
+        var clientWidth = document.getElementById('container').clientWidth;
+        console.log(clientHeight);
+        _d.id = `Sample Node ${d}`;
+        _d.x = Math.random() * clientWidth;
+        _d.y = Math.random() * clientHeight;
+        return _d
+    })
 
-    console.log(data)
+    console.log(sampleData)
         //https://bost.ocks.org/mike/join/
     var points = canvas.selectAll("circle")
-        .data(data)
+        .data(sampleData)
         .enter().append("circle")
         .attr("r", 3)
         .attr("cx", function(d) {
