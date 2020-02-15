@@ -88,7 +88,7 @@ function logData(choice) {
     document.getElementById("GoAgain").click();
     db.collection('testing').add({
         user: 1,
-        selection: choice,
+        selection: 'random',
         testNumber: 1,
         actualValue: 33
     }).then(function() {
