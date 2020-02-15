@@ -1,5 +1,6 @@
 function main() {
     setActions();
+
     function setActions() {
         //The start button is on the index page
         var startButton = document.getElementById("startButton");
@@ -25,8 +26,8 @@ function randomSVG() {
 
     var canvas = d3.select('svg');
 
-        //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
-     var sampleData = d3.range(100).map(function(d) {
+    //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
+    var sampleData = d3.range(100).map(function(d) {
         var _d = {};
         var clientHeight = document.getElementById('container').clientHeight;
         var clientWidth = document.getElementById('container').clientWidth;
@@ -73,4 +74,35 @@ function getRandomGreen(){
 
 function logGreens(allGreen, oneGreen){
     //add the greens to the data collection
+}
+
+function logKey(e) {
+    console.log(e.key)
+    if (e.key == "q") {
+        console.log('q was pressed!!!')
+        document.getElementById('Outlier').checked = true;
+        choice = true
+    } else if (e.key == "p") {
+        console.log('p was pressed!!')
+        document.getElementById('No Outlier').checked = true;
+        choice = false
+    }
+    //!!! INSERT wait a bit to show the user their selection before its submitted
+    logData(choice)
+}
+
+
+//function to log data and move on
+
+function logData(choice) {
+    console.log(choice);
+    document.getElementById("GoAgain").click();
+    if (choice == true) {
+
+        //send input to DB here
+    } else if (choice == false) {
+
+        //send input to DB here
+
+    }
 }

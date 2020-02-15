@@ -2,6 +2,7 @@
 <html lang="en">
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="random.js"></script>
 
 <head>
     <link rel="stylesheet" href="style.css">
@@ -13,13 +14,19 @@
     <h1> Response Page</h1>
 
     <span>
-        <h2>Was there an outlier?</h2>
+        <h2 id="title">Was there an outlier?</h2>
+        <p>select yes with the q key, no with the p key, or use mouse</p>
         <input type="radio" id="Outlier" name="Was there an outlier" value="Outlier">
         <label for="Outlier">Yes</label><br>
         <input type="radio" id="No Outlier" name="Was there an outlier" value="No Outlier">
         <label for="No Outlier">No</label><br>
-        <button id = "GoAgain"> <a href="svgScatter.html">Go Again</a></button>
+        
+        <!-- May want to make the rest of the links inline js like below -->
+        <button id = "GoAgain" onclick = "window.location='svgScatter.html';">Go Again</a></button>
         <button> <a href="svgScatter.html">End</a></button>
+        <script>
+        document.addEventListener('keydown', logKey);
+        </script>
     </span>
 </body>
 
