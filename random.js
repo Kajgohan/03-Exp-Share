@@ -13,6 +13,7 @@ function main() {
 
 }
 
+
 //Creates the random SVG dots onto the canvas
 function randomSVG() {
     //pick which attribute is going to be tested
@@ -64,18 +65,70 @@ function logKey(e) {
     logData(choice)
 }
 
+// Initialize Cloud Firestore through Firebase
 
+//meed to figure out how to keey these keys private from github right now they can just be in the gitignore
+//get the local keys
+// var mydata = JSON.parse(keys);
+// console.log(json.keys);
+
+// very sketchy to have keys in the open like this, but apparently all the security is done in rules on the firebase console. 
+firebase.initializeApp({
+    apiKey: "AIzaSyDzvcbGX0Nsre6GGzkZV6Zij4_pqlCafQk",
+    authDomain: "cs480xproject.firebaseapp.com",
+    projectId: "cs480xproject"
+});
+
+var db = firebase.firestore();
+const docRef = db.doc("testing/testData");
 //function to log data and move on
 
 function logData(choice) {
     console.log(choice);
     document.getElementById("GoAgain").click();
-    if (choice == true) {
+    db.collection('testing').add({
+        user: 1,
+        selection: choice,
+        testNumber: 1,
+        actualValue: 33
+    }).then(function() {
+        console.log('Successfully saved!')
+    }).catch(function(error) {
+        console.log("received the following error when posting:", error)
+    });
+}
 
-        //send input to DB here
-    } else if (choice == false) {
+//https://www.youtube.com/watch?v=2Vf1D-rUMwE
 
-        //send input to DB here
+function databaseTest() {
+    db.collection('testing').add({
+        user: 1,
+        selection: "True",
+        testNumber: 1,
+        actualValue: 33
+    }).then(function() {
+        console.log('Successfully saved!')
+    }).catch(function(error) {
+        console.log("received the following error when posting:", error)
+    });
 
-    }
+    db.doc('testing/testData').get().then(function(doc) {
+        if (doc && doc.exists) {
+            const myData = doc.data();
+            console.log(myData)
+        } else {
+            console.log('requested does not exist:', doc)
+        }
+    }).catch(function(error) {
+        console.log("received the following error when getting:", error)
+    });
+
+    //https://www.youtube.com/watch?v=kmTECF0JZyQ
+    //prints all the data to the console
+    db.collection('testing').get().then((snapshot) => {
+        console.log(snapshot.docs)
+        snapshot.docs.forEach(doc => {
+            console.log(doc.data())
+        })
+    })
 }
