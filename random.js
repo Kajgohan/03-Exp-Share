@@ -20,10 +20,16 @@ function randomSVG() {
     //location
     //hue
     //saturation
-    var allGreen = "#00FF00";
-    var oneGreen = "#000000";
-    logGreens(allGreen, oneGreen);
-
+    var allGreen = getRandomGreen();
+    var oneGreen = getRandomGreen();
+    var cx = Math.random() * document.getElementById('container').clientWidth;
+    var cy = Math.random() * document.getElementById('container').clientHeight;
+    var isOutlier = getRandomBool();
+    formatData("isOutlier", isOutlier);
+    formatData("allGreen", allGreen);
+    formatData("oneGreen", oneGreen);
+    formatData("randomX", cx);
+    formatData("randomY", cy);
 
     var canvas = d3.select('svg');
 
@@ -32,7 +38,6 @@ function randomSVG() {
         var _d = {};
         var clientHeight = document.getElementById('container').clientHeight;
         var clientWidth = document.getElementById('container').clientWidth;
-        console.log(clientHeight);
         _d.id = `Sample Node ${d}`;
         _d.x = Math.random() * clientWidth;
         _d.y = Math.random() * clientHeight;
@@ -40,14 +45,13 @@ function randomSVG() {
         return _d
     });
 
-    console.log(sampleData);
 
 
         //https://bost.ocks.org/mike/join/
     var points = canvas.selectAll("circle")
         .data(sampleData)
         .enter().append("circle")
-        .attr("r", 3)
+        .attr("r", 10)
         .attr("cx", function(d) {
             //console.log(d)
             return d.x;
@@ -56,24 +60,24 @@ function randomSVG() {
             return d.y;
         })
         .attr('fill', function (d) {
-            return d.color;
+            return d3.hsl(d.color, 1, .5);
         });
 
     canvas.append("circle")
-        .attr("cx", Math.random() * document.getElementById('container').clientWidth)
-        .attr("cy", Math.random() * document.getElementById('container').clientHeight)
-        .attr("r", 30)
-        .attr('fill', oneGreen);
+        .attr("cx", cx)
+        .attr("cy", cy)
+        .attr("r", 10)
+        .attr('fill', d3.hsl(oneGreen, 1, .5));
 
 }
 
 function getRandomGreen(){
     //choose green;
-    return ("#00FF00");
+    return (Math.round((Math.random()*59) + 121));
 
 }
 
-function logGreens(allGreen, oneGreen){
+function formatData(name, data){
     //add the greens to the data collection
 }
 
@@ -158,4 +162,14 @@ function databaseTest() {
             console.log(doc.data())
         })
     })
+}
+
+function getRandomBool(){
+    var x = Math.random()*10;
+    if(x<5){
+        return(false);
+    }
+    else{
+        return(true);
+    }
 }
