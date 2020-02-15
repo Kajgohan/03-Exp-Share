@@ -18,10 +18,15 @@ function randomSVG() {
     //location
     //hue
     //saturation
-    var canvas = d3.select('svg')
+    var allGreen = "#00FF00";
+    var oneGreen = "#000000";
+    logGreens(allGreen, oneGreen);
+
+
+    var canvas = d3.select('svg');
 
         //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
-     var sampleData = d3.range(1000).map(function(d) {
+     var sampleData = d3.range(100).map(function(d) {
         var _d = {};
         var clientHeight = document.getElementById('container').clientHeight;
         var clientWidth = document.getElementById('container').clientWidth;
@@ -29,10 +34,13 @@ function randomSVG() {
         _d.id = `Sample Node ${d}`;
         _d.x = Math.random() * clientWidth;
         _d.y = Math.random() * clientHeight;
+        _d.color = allGreen;
         return _d
-    })
+    });
 
-    console.log(sampleData)
+    console.log(sampleData);
+
+
         //https://bost.ocks.org/mike/join/
     var points = canvas.selectAll("circle")
         .data(sampleData)
@@ -45,5 +53,24 @@ function randomSVG() {
         .attr("cy", function(d) {
             return d.y;
         })
-        .attr('fill', 'red');
+        .attr('fill', function (d) {
+            return d.color;
+        });
+
+    canvas.append("circle")
+        .attr("cx", Math.random() * document.getElementById('container').clientWidth)
+        .attr("cy", Math.random() * document.getElementById('container').clientHeight)
+        .attr("r", 30)
+        .attr('fill', oneGreen);
+
+}
+
+function getRandomGreen(){
+    //choose green;
+    return ("#00FF00");
+
+}
+
+function logGreens(allGreen, oneGreen){
+    //add the greens to the data collection
 }
