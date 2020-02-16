@@ -103,24 +103,22 @@ function logKey(e) {
         console.log('q was pressed!!!')
         document.getElementById('Outlier').checked = true;
         choice = document.getElementById('Outlier').checked;
-        logData(choice)
-        document.getElementById("GoAgain").click();
+        choiceHandler(choice);
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
         choice = document.getElementById('No Outlier').checked;
-        logData(choice)
-        document.getElementById("GoAgain").click();
+        choiceHandler(choice);
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
 
 }
 
-async function radioHandler(choice) {
-    console.log("HELLO")
-    promise = logData(choice);
-    console.log(promise);
-    window.location = 'svgScatter.html';
+function choiceHandler(choice) {
+    logData(choice, function() {
+        window.location = 'svgScatter.html';
+    });
+
 }
 // Initialize Cloud Firestore through Firebase
 
@@ -145,13 +143,14 @@ const docRef = db.doc("testing/testData");
 //function to log data and move on
 const collRef = db.collection('testing3');
 
-async function logData(choice) {
+function logData(choice, callback) {
     var now = new Date();
     // document.getElementById("GoAgain").click();
     collRef.add({
         user: localStorage.getItem("userID"),
         time: now,
         selection: choice,
+        isOutlier: localStorage.getItem('isOutlier'),
         backgroundColor: localStorage.getItem("backgroundGreen"),
         popoutColor: localStorage.getItem("popoutGreen"),
         randX: localStorage.getItem("randomX"),
@@ -159,11 +158,11 @@ async function logData(choice) {
     }).then(function() {
         console.log('Successfully saved!')
         var status = 'Successfully saved!'
-        return status;
+        callback();
     }).catch(function(error) {
         console.log("received the following error when posting:", error)
         var status = "received the following error when posting:"
-        return status;
+        callback();
     });
 
 }
