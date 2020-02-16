@@ -141,7 +141,7 @@ var db = firebase.firestore();
 //remember to change this to the current DB
 const docRef = db.doc("testing/testData");
 //function to log data and move on
-const collRef = db.collection('Final_Tests');
+const collRef = db.collection('LIVE_DB');
 
 function logData(choice, callback) {
     var now = new Date();
