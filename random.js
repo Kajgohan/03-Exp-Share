@@ -39,6 +39,8 @@ function randomSVG() {
     console.log(oneGreen);
     console.log(cx);
     console.log(cy);
+    console.log(userID);
+
 
     var canvas = d3.select('svg');
 
