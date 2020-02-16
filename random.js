@@ -103,12 +103,12 @@ function logKey(e) {
         console.log('q was pressed!!!')
         document.getElementById('Outlier').checked = true;
         choice = document.getElementById('Outlier').checked;
-        choiceHandler(choice);
+        choiceHandler(true);
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
         choice = document.getElementById('No Outlier').checked;
-        choiceHandler(choice);
+        choiceHandler(false);
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
 
@@ -141,7 +141,7 @@ var db = firebase.firestore();
 //remember to change this to the current DB
 const docRef = db.doc("testing/testData");
 //function to log data and move on
-const collRef = db.collection('testing3');
+const collRef = db.collection('Final_Tests');
 
 function logData(choice, callback) {
     var now = new Date();

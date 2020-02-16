@@ -6,6 +6,25 @@ span {
     margin-right: 25%;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.box {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.boxleft {
+    justify-content: left;
+    align-items: left;
+    text-align: left;
+}
+
 #pop {
     color: red;
 }
@@ -64,7 +83,7 @@ button {
     border-style: solid;
 }
 
-#myCanvas{
+#myCanvas {
     height: 100%;
     width: 100%;
 }

@@ -13,11 +13,14 @@
 </head>
 
 <body>
-    <h1> Response Page</h1>
+    <h1 style="text-align: center;"> Response Page</h1>
 
-    <span>
+    <span class="wrapper">
+        <div class = "boxleft">
         <h2 id="title">Was there an outlier?</h2>
-        <p>select yes with the q key, no with the p key, or use mouse</p>
+        <p>Select: </br>YES with the q key, </br>
+            NO with the p key, </br>
+            or use mouse</p>
         <input type="radio" id="Outlier" name="Was there an outlier" value="Outlier", onclick = "choiceHandler(true);">
         <label for="Outlier">Yes</label><br>
         <input type="radio" id="No Outlier" name="Was there an outlier" value="No Outlier", onclick = "choiceHandler(false);">
@@ -25,7 +28,8 @@
         
         <!-- May want to make the rest of the links inline js like below -->
         <button id = "GoAgain" onclick = "window.location='svgScatter.html';">Go Again</a></button>
-        <button> <a href="svgScatter.html">End</a></button>
+        <button> <a href="exitPage.html">End</a></button>
+        </div>
         <script>
         document.addEventListener('keydown', logKey);
         // document.addEventListener()
