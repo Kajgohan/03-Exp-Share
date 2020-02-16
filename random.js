@@ -41,7 +41,7 @@ function randomSVG() {
     console.log(oneGreen);
     console.log(cx);
     console.log(cy);
-    console.log(userID);
+    // console.log(userID);
 
 
     var canvas = d3.select('svg');
@@ -104,12 +104,12 @@ function logKey(e) {
         document.getElementById('Outlier').checked = true;
         choice = document.getElementById('Outlier').checked;
         logData(choice)
-        logData(choice, 11, 22, 'dotlocation')
+        document.getElementById
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
         choice = document.getElementById('No Outlier').checked;
-        logData(choice, 11, 22, 'dotlocation')
+        logData(choice)
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
 
@@ -118,28 +118,37 @@ function logKey(e) {
 
 // very sketchy to have keys in the open like this, 
 //but apparently all the security is done in rules on the firebase console. 
-
-firebase.initializeApp({
-    apiKey: "AIzaSyDzvcbGX0Nsre6GGzkZV6Zij4_pqlCafQk",
-    authDomain: "cs480xproject.firebaseapp.com",
-    projectId: "cs480xproject"
-});
+var firebaseConfig = {
+    apiKey: "AIzaSyBDnEaLL7b6HWQFCZWczrnogpAkp9azrWg",
+    authDomain: "x2-926f2.firebaseapp.com",
+    databaseURL: "https://x2-926f2.firebaseio.com",
+    projectId: "x2-926f2",
+    storageBucket: "x2-926f2.appspot.com",
+    messagingSenderId: "256517265277",
+    appId: "1:256517265277:web:6d36c8233db2bbdf629e14",
+    measurementId: "G-ENBNPM79CY"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
+//remember to change this to the current DB
 const docRef = db.doc("testing/testData");
 //function to log data and move on
+// const collRef = db.collection('testing3');
 
-function logData(choice, backgroundColor, popoutColor, dotLocation) {
-    console.log(choice);
+function logData(choice) {
+
     var now = new Date();
     // document.getElementById("GoAgain").click();
-    db.collection('testing2').add({
-        user: 1,
-        selection: choice,
-        backgroundColor: backgroundColor,
-        popoutColor: popoutColor,
+    db.collection('testing4').add({
+        user: localStorage.getItem("userID"),
         time: now,
-        dotLocation: 'array'
+        selection: choice,
+        backgroundColor: localStorage.getItem("backgroundGreen"),
+        popoutColor: localStorage.getItem("popoutGreen"),
+        randX: localStorage.getItem("randomX"),
+        randY: localStorage.getItem("randomY"),
     }).then(function() {
         console.log('Successfully saved!')
     }).catch(function(error) {
@@ -149,36 +158,50 @@ function logData(choice, backgroundColor, popoutColor, dotLocation) {
 
 //https://www.youtube.com/watch?v=2Vf1D-rUMwE
 
-function databaseTest() {
-    db.collection('testing').add({
-        user: 1,
-        selection: "True",
-        testNumber: 1,
-        actualValue: 33
-    }).then(function() {
-        console.log('Successfully saved!')
-    }).catch(function(error) {
-        console.log("received the following error when posting:", error)
-    });
+// function databaseTest() {
+//     collRef.add({
+//         user: 1,
+//         selection: "True",
+//         testNumber: 1,
+//         actualValue: 33
+//     }).then(function() {
+//         console.log('Successfully saved!')
+//     }).catch(function(error) {
+//         console.log("received the following error when posting:", error)
+//     });
 
-    db.doc('testing/testData').get().then(function(doc) {
-        if (doc && doc.exists) {
-            const myData = doc.data();
-            console.log(myData)
-        } else {
-            console.log('requested does not exist:', doc)
-        }
-    }).catch(function(error) {
-        console.log("received the following error when getting:", error)
-    });
+//     db.doc('testing/testData').get().then(function(doc) {
+//         if (doc && doc.exists) {
+//             const myData = doc.data();
+//             console.log(myData)
+//         } else {
+//             console.log('requested does not exist:', doc)
+//         }
+//     }).catch(function(error) {
+//         console.log("received the following error when getting:", error)
+//     });
 
-    //https://www.youtube.com/watch?v=kmTECF0JZyQ
-    //prints all the data to the console
+//     //https://www.youtube.com/watch?v=kmTECF0JZyQ
+//     //prints all the data to the console
+// }
+
+function snapshotTest() {
     db.collection('testing').get().then((snapshot) => {
         console.log(snapshot.docs)
         snapshot.docs.forEach(doc => {
             console.log(doc.data())
         })
+    })
+}
+// https://firebase.google.com/docs/database/web/read-and-write
+function getMaxUser() {
+    db.collection('testing4').add({
+        user: 1
+    }).then(function(docRef) {
+        console.log('document written with ID', docRef.id);
+        localStorage.setItem('userID', docRef.id)
+    }).catch(function(error) {
+        console.log("error logging to firestore: ", error);
     })
 }
 
