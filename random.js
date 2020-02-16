@@ -104,15 +104,23 @@ function logKey(e) {
         document.getElementById('Outlier').checked = true;
         choice = document.getElementById('Outlier').checked;
         logData(choice)
-        document.getElementById
+        document.getElementById("GoAgain").click();
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
         choice = document.getElementById('No Outlier').checked;
         logData(choice)
+        document.getElementById("GoAgain").click();
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
 
+}
+
+async function radioHandler(choice) {
+    console.log("HELLO")
+    promise = logData(choice);
+    console.log(promise);
+    window.location = 'svgScatter.html';
 }
 // Initialize Cloud Firestore through Firebase
 
@@ -135,13 +143,12 @@ var db = firebase.firestore();
 //remember to change this to the current DB
 const docRef = db.doc("testing/testData");
 //function to log data and move on
-// const collRef = db.collection('testing3');
+const collRef = db.collection('testing3');
 
-function logData(choice) {
-
+async function logData(choice) {
     var now = new Date();
     // document.getElementById("GoAgain").click();
-    db.collection('testing4').add({
+    collRef.add({
         user: localStorage.getItem("userID"),
         time: now,
         selection: choice,
@@ -151,9 +158,14 @@ function logData(choice) {
         randY: localStorage.getItem("randomY"),
     }).then(function() {
         console.log('Successfully saved!')
+        var status = 'Successfully saved!'
+        return status;
     }).catch(function(error) {
         console.log("received the following error when posting:", error)
+        var status = "received the following error when posting:"
+        return status;
     });
+
 }
 
 //https://www.youtube.com/watch?v=2Vf1D-rUMwE
@@ -195,7 +207,7 @@ function snapshotTest() {
 }
 // https://firebase.google.com/docs/database/web/read-and-write
 function getMaxUser() {
-    db.collection('testing4').add({
+    collRef.add({
         user: 1
     }).then(function(docRef) {
         console.log('document written with ID', docRef.id);
