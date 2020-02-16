@@ -1,3 +1,5 @@
+var userID = 0;
+
 function main() {
     setActions();
 
@@ -13,6 +15,11 @@ function main() {
 
 }
 
+function setUID() {
+    userID = Math.random() * 1000000;
+    console.log(userID);
+}
+
 
 //Creates the random SVG dots onto the canvas
 function randomSVG() {
@@ -25,12 +32,19 @@ function randomSVG() {
     var cx = Math.random() * document.getElementById('container').clientWidth;
     var cy = Math.random() * document.getElementById('container').clientHeight;
     var isOutlier = getRandomBool();
-    formatData("isOutlier", isOutlier);
-    formatData("backgroundGreen", allGreen);
-    formatData("popoutGreen", oneGreen);
-    formatData("randomX", cx);
-    formatData("randomY", cy);
+    localStorage.setItem("isOutlier", isOutlier);
+    localStorage.setItem("backgroundGreen", allGreen);
+    localStorage.setItem("popoutGreen", oneGreen);
+    localStorage.setItem("randomX", cx);
+    localStorage.setItem("randomY", cy);
     var oneTestData = { "isOutlier": isOutlier, "backgroundGreen": allGreen, "popoutGreen": oneGreen, "randomX": cx, "randomY": cy }
+
+    console.log(isOutlier);
+    console.log(allGreen);
+    console.log(oneGreen);
+    console.log(cx);
+    console.log(cy);
+
     var canvas = d3.select('svg');
 
     //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
@@ -84,16 +98,18 @@ function formatData(name, data) {
 
 function logKey(e) {
     console.log(e.key)
+    let localcheck = localStorage.getItem("isOutlier")
+    console.log("local storage: is outlier", localcheck)
     if (e.key == "q") {
         console.log('q was pressed!!!')
         document.getElementById('Outlier').checked = true;
-        choice = true
+        choice = document.getElementById('Outlier').checked;
         logData(choice)
         logData(choice, 11, 22, 'dotlocation')
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
-        choice = false
+        choice = document.getElementById('No Outlier').checked;
         logData(choice, 11, 22, 'dotlocation')
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
