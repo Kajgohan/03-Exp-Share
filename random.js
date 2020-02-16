@@ -26,11 +26,11 @@ function randomSVG() {
     var cy = Math.random() * document.getElementById('container').clientHeight;
     var isOutlier = getRandomBool();
     formatData("isOutlier", isOutlier);
-    formatData("allGreen", allGreen);
-    formatData("oneGreen", oneGreen);
+    formatData("backgroundGreen", allGreen);
+    formatData("popoutGreen", oneGreen);
     formatData("randomX", cx);
     formatData("randomY", cy);
-
+    var oneTestData = { "isOutlier": isOutlier, "backgroundGreen": allGreen, "popoutGreen": oneGreen, "randomX": cx, "randomY": cy }
     var canvas = d3.select('svg');
 
     //random data generator {D3 Method: https://bl.ocks.org/jamesleesaunders/260cf482c8a56d49dfa6}
@@ -79,6 +79,7 @@ function getRandomGreen() {
 
 function formatData(name, data) {
     //add the greens to the data collection
+
 }
 
 function logKey(e) {
@@ -98,11 +99,6 @@ function logKey(e) {
     //!!! INSERT wait a bit to show the user their selection before its submitted
 
 }
-
-function goAgain(e) {
-
-}
-
 // Initialize Cloud Firestore through Firebase
 
 // very sketchy to have keys in the open like this, 
