@@ -1,5 +1,3 @@
-var userID = 0;
-
 function main() {
     setActions();
 
@@ -16,8 +14,7 @@ function main() {
 }
 
 function setUID() {
-    localStorage.setItem("uID", Math.random() * 1000000);
-    console.log(userID);
+    localStorage.setItem("uID", (Math.random() * 1000000));
 }
 
 
