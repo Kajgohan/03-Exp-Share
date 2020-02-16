@@ -1,6 +1,6 @@
+var userID = 0;
 function main() {
     setActions();
-
     function setActions() {
         //The start button is on the index page
         var startButton = document.getElementById("startButton");
@@ -11,6 +11,10 @@ function main() {
         goAgain.onClick = randomSVG;
     }
 
+}
+function setUID(){
+    userID = Math.random()*1000000;
+    console.log(userID);
 }
 
 
@@ -30,6 +34,11 @@ function randomSVG() {
     formatData("oneGreen", oneGreen);
     formatData("randomX", cx);
     formatData("randomY", cy);
+    console.log(isOutlier);
+    console.log(allGreen);
+    console.log(oneGreen);
+    console.log(cx);
+    console.log(cy);
 
     var canvas = d3.select('svg');
 
@@ -86,13 +95,13 @@ function logKey(e) {
     if (e.key == "q") {
         console.log('q was pressed!!!')
         document.getElementById('Outlier').checked = true;
-        choice = true
+        choice = document.getElementById('Outlier').checked;
         logData(choice)
         logData(choice, 11, 22, 'dotlocation')
     } else if (e.key == "p") {
         console.log('p was pressed!!')
         document.getElementById('No Outlier').checked = true;
-        choice = false
+        choice = document.getElementById('No Outlier').checked;
         logData(choice, 11, 22, 'dotlocation')
     }
     //!!! INSERT wait a bit to show the user their selection before its submitted
