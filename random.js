@@ -16,7 +16,7 @@ function main() {
 }
 
 function setUID() {
-    localStorage.setItem("uID", userID = Math.random() * 1000000);
+    localStorage.setItem("uID", Math.random() * 1000000);
     console.log(userID);
 }
 
