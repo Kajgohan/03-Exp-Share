@@ -20,3 +20,11 @@
 # Design Achievements 
 - color choice
 
+# future work
+ - ml false positive/negative stuff, precision / tptn fpfn f1
+# limitations
+
+- Screen size
+  - other studies blocked mobile devices
+- dot overlap
+- lax security

@@ -197,11 +197,14 @@ function logData(choice, callback) {
 // }
 
 function snapshotTest() {
-    db.collection('testing').get().then((snapshot) => {
+    dataExport = [];
+    collRef.get().then((snapshot) => {
         console.log(snapshot.docs)
         snapshot.docs.forEach(doc => {
-            console.log(doc.data())
+            // console.log(doc.data())
+            dataExport.push(doc.data);
         })
+        console.log(dataExport)
     })
 }
 // https://firebase.google.com/docs/database/web/read-and-write
