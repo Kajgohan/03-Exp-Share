@@ -15,6 +15,8 @@ for(val in x){
   print(error)
   y[val+1] = error
 }
+
+a <- c(nrow(bin0), nrow(bin1), nrow(bin2), nrow(bin3), nrow(bin4), nrow(bin5))
 z <- c('0-9 hsl Hue Difference','10-19 hsl Hue Difference','20-29 hsl Hue Difference','30-39 hsl Hue Difference','40-49 hsl Hue Difference','50-57 hsl Hue Difference')
 print(z)
 f <- c(1,2,3,4,5,6)
@@ -22,6 +24,10 @@ f <- c(1,2,3,4,5,6)
 dotchart(y,labels=z,cex=.7,
          main="log error for binned hue differences",
          xlab="log error")
+
+dotchart(a,labels=z,cex=.7,
+         main="number of samples per bin",
+         xlab="number of samples")
 
 
 
