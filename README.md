@@ -1,9 +1,3 @@
-- Working link to the experiment hosted on gh-pages.
-- Concise description and screenshot of your experiment.
-- Description of the technical achievements you attempted with this project.
-- Description of the design achievements you attempted with this project.
-[project link](https://kajgohan.github.io/03-Exp-Share/index.html)
-
 # Project Description
 ## Experimental Design
 
